@@ -1,2 +1,0 @@
-cluster labelName: 15.428572; count: 7
-

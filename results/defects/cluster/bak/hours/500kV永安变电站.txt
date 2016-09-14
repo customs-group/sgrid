@@ -1,8 +1,0 @@
-cluster labelName: 22.5; count: 2
-
-cluster labelName: 7.0; count: 2
-
-cluster labelName: 20.0; count: 2
-
-cluster labelName: 2.5; count: 2
-

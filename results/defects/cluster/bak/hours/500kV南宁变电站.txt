@@ -1,8 +1,0 @@
-cluster labelName: 12.857142; count: 7
-
-cluster labelName: 16.833334; count: 6
-
-cluster labelName: 19.833334; count: 6
-
-cluster labelName: 9.666667; count: 6
-

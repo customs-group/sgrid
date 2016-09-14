@@ -1,4 +1,0 @@
-cluster labelName: 21.5; count: 8
-
-cluster labelName: 17.666666; count: 3
-
