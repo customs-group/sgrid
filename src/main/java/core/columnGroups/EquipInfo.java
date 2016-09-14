@@ -7,6 +7,9 @@ import java.io.Serializable;
  * Created by edwardlol on 16/5/29.
  */
 public class EquipInfo implements Serializable {
+
+    //~ Instance fields --------------------------------------------------------
+
     private final String name; // 设备名称
     private final String type; // 设备类别
     private final int voltage; // 电压等级
@@ -14,6 +17,11 @@ public class EquipInfo implements Serializable {
     private final String partsName; // 部件名称
     private final String model; // 设备型号
 
+    //~ Constructors -----------------------------------------------------------
+
+    /** private constructer
+     * use Builder to get an instance of this class
+     */
     private EquipInfo(String name, String type, int voltage, String functionPosition, String partsName, String model) {
         this.name = name;
         this.type = type;
@@ -23,7 +31,20 @@ public class EquipInfo implements Serializable {
         this.model = model;
     }
 
-    /** getter methods */
+    //~ Methods ----------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "设备名称: " + this.name
+                + "\n设备类别: " + this.type
+                + "\n电压等级: " + this.voltage
+                + "\n功能位置: " + this.functionPosition
+                + "\n部件名称: " + this.partsName
+                + "\n设备型号: " + this.model;
+    }
+
+    //~ Getter methods ---------------------------------------------------------
+
     public String getName() {
         return this.name;
     }
@@ -43,15 +64,7 @@ public class EquipInfo implements Serializable {
         return this.model;
     }
 
-    @Override
-    public String toString() {
-        return "设备名称: " + this.name
-                + "\n设备类别: " + this.type
-                + "\n电压等级: " + this.voltage
-                + "\n功能位置: " + this.functionPosition
-                + "\n部件名称: " + this.partsName
-                + "\n设备型号: " + this.model;
-    }
+    //~ Builder ----------------------------------------------------------------
 
     public static class EquipInfoBuilder {
         private final String _name; // 设备名称
@@ -84,3 +97,5 @@ public class EquipInfo implements Serializable {
         }
     }
 }
+
+// End EquipInfo.java

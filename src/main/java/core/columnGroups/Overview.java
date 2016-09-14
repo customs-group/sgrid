@@ -7,6 +7,9 @@ import java.io.Serializable;
  * Created by edwardlol on 16/5/29.
  */
 public class Overview implements Serializable {
+
+    //~ Instance fields --------------------------------------------------------
+
     private final String level; // 严重等级
     private final String defectType; // 缺陷类别
     private final String defectClass; // 缺陷种类
@@ -14,6 +17,11 @@ public class Overview implements Serializable {
     private final String type; // 类别
     private final String classification; // 分类
 
+    //~ Constructors -----------------------------------------------------------
+
+    /** private constructer
+     * use Builder to get an instance of this class
+     */
     private Overview(String level, String defectType, String defectClass,
                      String status, String type, String classification) {
         this.level = level;
@@ -24,7 +32,20 @@ public class Overview implements Serializable {
         this.status = status;
     }
 
-    /** getter methods */
+    //~ Methods ----------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "严重等级: " + this.level
+                + "\n缺陷类别: " + this.defectType
+                + "\n缺陷种类: " + this.defectClass
+                + "\n状态: " + this.status
+                + "\n类别: " + this.type
+                + "\n分类: " + this.classification;
+    }
+
+    //~ Getter methods ---------------------------------------------------------
+
     public String getLevel() {
         return this.level;
     }
@@ -44,15 +65,7 @@ public class Overview implements Serializable {
         return this.classification;
     }
 
-    @Override
-    public String toString() {
-        return "严重等级: " + this.level
-                + "\n缺陷类别: " + this.defectType
-                + "\n缺陷种类: " + this.defectClass
-                + "\n状态: " + this.status
-                + "\n类别: " + this.type
-                + "\n分类: " + this.classification;
-    }
+    //~ Builder ----------------------------------------------------------------
 
     public static class OverviewBuilder {
         private final String _level; // 严重等级
@@ -83,3 +96,5 @@ public class Overview implements Serializable {
         }
     }
 }
+
+// End Overview.java

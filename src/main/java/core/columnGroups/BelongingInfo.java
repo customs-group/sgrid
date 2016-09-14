@@ -7,11 +7,19 @@ import java.io.Serializable;
  * Created by edwardlol on 16/6/1.
  */
 public class BelongingInfo implements Serializable {
+
+    //~ Instance fields --------------------------------------------------------
+
     private final String company; // 公司
     private final String department; // 单位
     private final String location; // 地点
     private final String manufactor; // 生产厂家
 
+    //~ Constructors -----------------------------------------------------------
+
+    /** private constructer
+     * use Builder to get an instance of this class
+     */
     private BelongingInfo(String company, String department, String location, String manufactor) {
         this.company = company;
         this.department = department;
@@ -19,7 +27,18 @@ public class BelongingInfo implements Serializable {
         this.manufactor = manufactor;
     }
 
-    /** getter methods */
+    //~ Methods ----------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "公司: " + this.company
+                + "\n单位: " + this.department
+                + "\n地点: " + this.location
+                + "\n生产厂家: " + this.manufactor;
+    }
+
+    //~ Getter methods ---------------------------------------------------------
+
     public String getCompany() {
         return this.company;
     }
@@ -33,13 +52,7 @@ public class BelongingInfo implements Serializable {
         return this.manufactor;
     }
 
-    @Override
-    public String toString() {
-        return "公司: " + this.company
-                + "\n单位: " + this.department
-                + "\n地点: " + this.location
-                + "\n生产厂家: " + this.manufactor;
-    }
+    //~ Builder ----------------------------------------------------------------
 
     public static class BelongingInfoBuilder {
         private final String _company; // 公司
@@ -59,3 +72,5 @@ public class BelongingInfo implements Serializable {
         }
     }
 }
+
+// End BelongingInfo.java

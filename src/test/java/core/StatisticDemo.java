@@ -6,8 +6,8 @@ package core;
  */
 public class StatisticDemo {
     public static void main(String[] args) {
-        StatisticLib statisticLib = new StatisticLib();
-        statisticLib.initFromFile("./datasets/defects/SwitchDefects.cleared.csv");
+        StatisticLib statisticLib = StatisticLib.getInstance();
+        statisticLib.initFromCSVFile("./datasets/defects/SwitchDefects.cleared.csv");
 
 //        statisticLib.checkDateCorrelation("defectClass", 7, "./results/defects/correlation/");
 //        statisticLib.manufactorMonth("./results/defects/manufactorMonth.txt");

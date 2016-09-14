@@ -10,6 +10,9 @@ import java.util.Calendar;
  * Created by edwardlol on 16/5/29.
  */
 public class DateInfo implements Serializable {
+
+    //~ Instance fields --------------------------------------------------------
+
     private final Calendar reportDate; // 报告时间
     private final Calendar operationDate; // 设备投产日期
     private final Calendar findDate; // 发现时间
@@ -21,6 +24,11 @@ public class DateInfo implements Serializable {
     private int operationYears; // 到报告缺陷为止设备的正常运行年数
     private int solveHours; // 从报告缺陷到消除缺陷花费的小时数
 
+    //~ Constructors -----------------------------------------------------------
+
+    /** private constructer
+     * use Builder to get an instance of this class
+     */
     private DateInfo(Calendar reportDate, Calendar operationDate, Calendar findDate,
                      Calendar solveDate, Calendar producedDate) {
         this.reportDate = reportDate;
@@ -40,7 +48,19 @@ public class DateInfo implements Serializable {
         }
     }
 
-    /** getter methods */
+    //~ Methods ----------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "设备生产日期: " + this.producedDate.toString()
+                + "\n设备投产日期: " + this.operationDate.toString()
+                + "\n发现时间: " + this.findDate.toString()
+                + "\n报告时间: " + this.reportDate.toString()
+                + "\n消缺时间: " + this.solveDate.toString();
+    }
+
+    //~ Getter methods ---------------------------------------------------------
+
     public Calendar getReportDate() {
         return this.reportDate;
     }
@@ -69,14 +89,7 @@ public class DateInfo implements Serializable {
         return this.solveHours;
     }
 
-    @Override
-    public String toString() {
-        return "设备生产日期: " + this.producedDate.toString()
-                + "\n设备投产日期: " + this.operationDate.toString()
-                + "\n发现时间: " + this.findDate.toString()
-                + "\n报告时间: " + this.reportDate.toString()
-                + "\n消缺时间: " + this.solveDate.toString();
-    }
+    //~ Builder ----------------------------------------------------------------
 
     public static class DateInfoBuilder {
         private final Calendar _reportDate; // 报告时间
@@ -108,3 +121,5 @@ public class DateInfo implements Serializable {
         }
     }
 }
+
+// End DateInfo.java

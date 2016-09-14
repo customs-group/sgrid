@@ -97,8 +97,8 @@ public class MyMath {
      * @param originalMatrix the original distance matrix
      * @param index_i the first index of two clusters to be unioned
      * @param index_j the second index of two clusters to be unioned
-     * @param cluster_i_num the number of elements in cluster i
-     * @param cluster_j_num the number of elements in cluster j
+     * @param cluster_i_num the number of defects in cluster i
+     * @param cluster_j_num the number of defects in cluster j
      * @return the updated distance matrix
      */
     public static double[][] updateDistanceMatrix(double[][] originalMatrix, int index_i, int index_j, int cluster_i_num, int cluster_j_num) {
@@ -154,8 +154,8 @@ public class MyMath {
      * @param originalMatrix the original distance matrix
      * @param index_i the first index of two clusters to be unioned
      * @param index_j the second index of two clusters to be unioned
-     * @param cluster_i_num the number of elements in cluster i
-     * @param cluster_j_num the number of elements in cluster j
+     * @param cluster_i_num the number of defects in cluster i
+     * @param cluster_j_num the number of defects in cluster j
      * @return the updated distance matrix
      */
     public static float[][] updateDistanceMatrix(float[][] originalMatrix, int index_i, int index_j, int cluster_i_num, int cluster_j_num) {

@@ -19,8 +19,8 @@ public class Document implements Serializable {
     private String content;
 
     private Map<String, Integer> termsCount;
-    private Map<String, Double> termsTF_IDF = new HashMap<>();
-    private Map<String, Double> keyWords = new HashMap<>();
+    private Map<String, Double> termsTF_IDF;
+    private Set<String> keyWords;
     private double[] featureVector;
 
     //~ Constructors -----------------------------------------------------------
@@ -49,6 +49,7 @@ public class Document implements Serializable {
      * @return a map of terms and their TF-IDF
      */
     public Map<String, Double> calculateTF_IDF(int docCount, Map<String, Set<Integer>> invertedIndex) {
+        this.termsTF_IDF = new HashMap<>();
         int wordsNum = 0;
         for (int i : this.termsCount.values()) { wordsNum += i; }
 
@@ -76,24 +77,19 @@ public class Document implements Serializable {
      * @return a set of key words
      */
     public Set<String> calculateKeyWords(int boundary) {
+        this.keyWords = new HashSet<>();
         // sort this.termsTF_IDF
         List<Map.Entry<String, Double>> termsEntryList = new ArrayList<>(this.termsTF_IDF.entrySet());
         Collections.sort(termsEntryList, (entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
         // get top x terms and their TF-IDF
         int realBoundary = Math.min(boundary, termsEntryList.size());
-        List<Map.Entry<String, Double>> keyTerms = termsEntryList.subList(0, realBoundary);
 
-        int wordsNum = 0;
-        for (int f : this.termsCount.values()) {
-            wordsNum += f;
+        for (int i = 0; i < realBoundary; i++) {
+            String keyWord = termsEntryList.get(i).getKey();
+            this.keyWords.add(keyWord);
         }
 
-        for (Map.Entry<String, Double> keyTerm : keyTerms) {
-            String keyWord = keyTerm.getKey();
-            double freq = 1.0 * this.termsCount.get(keyWord) / wordsNum;
-            this.keyWords.put(keyWord, freq);
-        }
-        return this.keyWords.keySet();
+        return this.keyWords;
     }
 
     /**
@@ -105,10 +101,8 @@ public class Document implements Serializable {
         this.featureVector = new double[featureTerms.size()];
         for (int i = 0; i < this.featureVector.length; i++) {
             String keyWord = featureTerms.get(i);
-            if (this.keyWords.containsKey(keyWord)) {
-//                this.featureVector[i] = this.keyWords.get(keyWord) * this.termsTF_IDF.get(keyWord);
+            if (this.keyWords.contains(keyWord)) {
                 this.featureVector[i] = this.termsTF_IDF.get(keyWord);
-//                this.featureVector[i] = this.keyWords.get(keyWord);
             }
         }
         // normalization
@@ -135,7 +129,7 @@ public class Document implements Serializable {
     public Map<String, Double> getTermsTF_IDF() {
         return this.termsTF_IDF;
     }
-    public Map<String, Double> getKeyWords() {
+    public Set<String> getKeyWords() {
         return this.keyWords;
     }
     public double[] getFeatureVector() {

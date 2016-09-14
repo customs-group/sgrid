@@ -9,6 +9,9 @@ import java.io.Serializable;
  * Created by edwardlol on 16/5/29.
  */
 public class Details implements Serializable {
+
+    //~ Instance fields --------------------------------------------------------
+
     private final String apperance; // 缺陷表象
     private final Document description; // 缺陷描述
     private final String recommendation; // 处理意见
@@ -17,7 +20,11 @@ public class Details implements Serializable {
     private final String solution; // 解决方案
     private final String comments; // 备注
 
+    //~ Constructors -----------------------------------------------------------
 
+    /** private constructer
+     * use Builder to get an instance of this class
+     */
     private Details(String apperance, Document description, String recommendation,
                     String defectPart, String defectReason, String solution, String comments) {
         this.apperance = apperance;
@@ -29,7 +36,21 @@ public class Details implements Serializable {
         this.comments = comments;
     }
 
-    /** getter methods */
+    //~ Methods ----------------------------------------------------------------
+
+    @Override
+    public String toString() {
+        return "缺陷表象: " + this.apperance
+                + "\n缺陷描述: " + this.description.toString()
+                + "\n处理意见: " + this.recommendation
+                + "\n缺陷部位: " + this.defectPart
+                + "\n缺陷原因: " + this.defectReason
+                + "\n解决方案: " + this.solution
+                + "\n备注: " + this.comments;
+    }
+
+    //~ Getter methods ---------------------------------------------------------
+
     public String getApperance() {
         return this.apperance;
     }
@@ -52,16 +73,7 @@ public class Details implements Serializable {
         return this.comments;
     }
 
-    @Override
-    public String toString() {
-        return "缺陷表象: " + this.apperance
-                + "\n缺陷描述: " + this.description.toString()
-                + "\n处理意见: " + this.recommendation
-                + "\n缺陷部位: " + this.defectPart
-                + "\n缺陷原因: " + this.defectReason
-                + "\n解决方案: " + this.solution
-                + "\n备注: " + this.comments;
-    }
+    //~ Builder ----------------------------------------------------------------
 
     public static class DetailsBuilder {
         private final String _apperance; // 缺陷表象
@@ -103,3 +115,5 @@ public class Details implements Serializable {
         }
     }
 }
+
+// End Details.java

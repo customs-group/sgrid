@@ -15,13 +15,43 @@ import java.util.regex.Pattern;
  *
  * Created by edwardlol on 16/5/25.
  */
-public class StatisticLib extends AbstractListLib<DefectComplete> {
+public class StatisticLib {
+
+    //~ Static fields/initializers ---------------------------------------------
+
+    private static StatisticLib instance = null;
+
+    //~ Instance fields --------------------------------------------------------
+
+    private final List<DefectComplete> defects = new ArrayList<>();
 
     private Map<String, List<DefectComplete>> locationMap = new HashMap<>(); // location : defectList
 
-    public StatisticLib() { }
+    //~ Constructors -----------------------------------------------------------
 
-    public void initFromFile(String file) {
+    /** private constructer
+     * use getInstance() to get an instance of this class
+     */
+    private StatisticLib() { }
+
+    //~ Methods ----------------------------------------------------------------
+
+    /**
+     * get the only instance of this class
+     * @return the only instance of this class
+     */
+    public static StatisticLib getInstance() {
+        if (instance == null) {
+            instance = new StatisticLib();
+        }
+        return instance;
+    }
+
+    /**
+     * init the lib from a given csv file
+     * @param file name of the given file
+     */
+    public void initFromCSVFile(String file) {
         long startTime = System.currentTimeMillis();
         try {
             FileReader fileReader = new FileReader(file);
@@ -93,7 +123,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
                 DefectComplete defect = new DefectComplete.Builder().overview(overview).details(details)
                         .dateInfo(dateInfo).equipInfo(equipInfo).belongingInfo(belongingInfo).build();
 //                defect.id = id;
-                this.elements.add(defect);
+                this.defects.add(defect);
                 line = bufferedReader.readLine();
             }
             bufferedReader.close();
@@ -112,7 +142,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
      * @param file
      */
     public void checkDateCorrelation(String fieldName, int interval, String file) {
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             String location = defect.getLocation();
             List<DefectComplete> list = this.locationMap.containsKey(location) ? this.locationMap.get(location) : new ArrayList<>();
             list.add(defect);
@@ -172,14 +202,14 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
      * @param file output file
      */
     public void recordStatisticResult(String file) {
-        Collections.sort(this.elements, (DefectComplete defect1, DefectComplete defect2) ->
+        Collections.sort(this.defects, (DefectComplete defect1, DefectComplete defect2) ->
                 Collator.getInstance(java.util.Locale.CHINA).compare(
                         defect1.getDepartment(), defect2.getDepartment()));
         try {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            this.elements.forEach(defect -> {
+            this.defects.forEach(defect -> {
                 try {
                     bufferedWriter.write(defect.toString() + ",\n");
                     bufferedWriter.flush();
@@ -201,7 +231,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
         Map<String, Integer> classMap = new HashMap<>();
         Map<String, Integer> levelMap = new HashMap<>();
 
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             int classCount = 1, levelCount = 1;
             if (classMap.containsKey(defect.getDefectClass())) {
                 classCount += classMap.get(defect.getDefectClass());
@@ -241,7 +271,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
      */
     public Map<String, Map<Integer, Integer>> manufactorMonth(String file) {
         Map<String, Map<Integer, Integer>> manufactorMap = new HashMap<>();
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             int operationMonths = defect.getOperationYears();
             if (operationMonths < 300 && operationMonths >= 0) {
                 Map<Integer, Integer> cntMap;
@@ -286,7 +316,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
      */
     public Map<Integer, Integer> getYearCount(String file) {
         Map<Integer, Integer> yearCount = new HashMap<>();
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             int cnt = 1;
             if (yearCount.containsKey(defect.getOperationYears())) {
                 cnt += yearCount.get(defect.getOperationYears());
@@ -317,7 +347,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
         // initFromCSVFile
         Set<String> catagoryIndex = new LinkedHashSet<>();
         Set<String> seriesIndex = new LinkedHashSet<>();
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             catagoryIndex.add(defect.getDefectPart());
             seriesIndex.add(defect.getLevel());
         });
@@ -332,7 +362,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
             seriesCatagoryCount.put(serie, catagoryCount);
         }
         // put in data
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             String catagory = defect.getDefectPart();
             String serie = defect.getLevel();
             Map<String, Integer> catagoryCount = seriesCatagoryCount.get(serie);
@@ -381,7 +411,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
      */
     public void demo1(String path) {
         Map<String, Map<String, List<String>>> map1 = new HashMap<>();
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             Map<String, List<String>> map2 = map1.containsKey(defect.getDefectType()) ?
                     map1.get(defect.getDefectType()) : new HashMap<>();
             List<String> list = map2.containsKey(defect.getDefectReason()) ?
@@ -446,7 +476,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
      */
     public void demo2_1(String path) {
         Map<String, Map<String, Map<String, Integer>>> map1 = new HashMap<>();
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             Map<String, Map<String, Integer>> map2 = map1.containsKey(defect.getDefectClass()) ?
                     map1.get(defect.getDefectClass()) : new HashMap<>();
             Map<String, Integer> map3 = map2.containsKey(defect.getDefectType()) ?
@@ -516,7 +546,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
     public void demo2_2(String path) {
         // 1
         Map<String, Integer> manuMap = new HashMap<>();
-        this.elements.forEach(defect -> Utility.updateCountMap(manuMap, defect.getManufactor()));
+        this.defects.forEach(defect -> Utility.updateCountMap(manuMap, defect.getManufactor()));
         try {
             FileWriter fw = new FileWriter("./results/demo/2_2/1.txt");
             BufferedWriter bw = new BufferedWriter(fw);
@@ -531,7 +561,7 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
 
         // 2
         Map<String, Set<Float>> _departmentMap = new HashMap<>();
-        this.elements.forEach(defect -> {
+        this.defects.forEach(defect -> {
             Set<Float> set = _departmentMap.containsKey(defect.getDepartment()) ?
                     _departmentMap.get(defect.getDepartment()) : new HashSet<>();
             if (defect.getSolveHours() != 0) {
@@ -563,3 +593,5 @@ public class StatisticLib extends AbstractListLib<DefectComplete> {
 
     }
 }
+
+// End StatisticLib.java

@@ -37,8 +37,8 @@ public abstract class AbstractCluster<E> {
     }
 
     /**
-     * get all elements in the cluster
-     * @return a set of all elements in the cluster
+     * get all defects in the cluster
+     * @return a set of all defects in the cluster
      */
     public Set<E> getElements() {
         return this.elements;
