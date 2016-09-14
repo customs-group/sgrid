@@ -1,0 +1,38 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15719; count: 2
+油泵启动打压异常:	1
+油位低:	1
+
+cluster labelName: 15659; count: 10
+密封圈脱落:	6
+储能故障:	2
+漏气:	1
+气体超标:	1
+
+cluster labelName: 15060; count: 2
+液压回路故障:	2
+
+cluster labelName: 15173; count: 2
+电压不合格:	1
+闭锁接点动作异常:	1
+
+cluster labelName: 12691; count: 2
+打压频繁:	2
+
+cluster labelName: 14578; count: 2
+打压频繁:	1
+刀闸烧坏:	1
+
+cluster labelName: 13108; count: 2
+开关接点损坏:	1
+打压频繁:	1
+
+cluster labelName: 13278; count: 2
+漏油:	1
+仪表故障:	1
+
+cluster labelName: 14400; count: 2
+接点不可靠:	1
+接点不动作:	1
+

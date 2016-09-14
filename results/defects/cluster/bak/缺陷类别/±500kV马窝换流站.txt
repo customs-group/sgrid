@@ -1,0 +1,89 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15899; count: 3
+渗漏:	1
+打压频繁:	2
+
+cluster labelName: 15444; count: 2
+打压频繁:	1
+橡胶圈脱落:	1
+
+cluster labelName: 15475; count: 2
+油路故障:	2
+
+cluster labelName: 15199; count: 2
+漏油:	2
+
+cluster labelName: 15328; count: 2
+电压、电流显示不正确:	1
+电容介损超标:	1
+
+cluster labelName: 15234; count: 3
+漏油:	3
+
+cluster labelName: 14920; count: 2
+计数器故障:	2
+
+cluster labelName: 12051; count: 3
+漏油:	1
+进水:	1
+油位低:	1
+
+cluster labelName: 12113; count: 2
+开关接点损坏:	1
+油位高:	1
+
+cluster labelName: 12184; count: 2
+漏油:	2
+
+cluster labelName: 12276; count: 3
+复归失败:	3
+
+cluster labelName: 12298; count: 2
+漏油:	1
+油位低:	1
+
+cluster labelName: 12348; count: 2
+漏油:	2
+
+cluster labelName: 12485; count: 2
+漏油:	2
+
+cluster labelName: 13143; count: 3
+漏油:	2
+电机无法启动:	1
+
+cluster labelName: 13188; count: 2
+漏油:	1
+设备老旧:	1
+
+cluster labelName: 13403; count: 2
+地刀解锁失败:	1
+漏油:	1
+
+cluster labelName: 13554; count: 2
+CT接线相反:	2
+
+cluster labelName: 13624; count: 2
+合位异常:	1
+漏油:	1
+
+cluster labelName: 13732; count: 2
+发热:	1
+温差大:	1
+
+cluster labelName: 13849; count: 2
+打压频繁:	1
+计数器故障:	1
+
+cluster labelName: 13972; count: 2
+打压频繁:	1
+漏油:	1
+
+cluster labelName: 13994; count: 2
+合位异常:	2
+
+cluster labelName: 14325; count: 2
+跳闸:	1
+分闸信号异常:	1
+

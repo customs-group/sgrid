@@ -1,0 +1,63 @@
+相关联缺陷种类	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 12961; count: 2
+机械故障:	2
+
+cluster labelName: 12976; count: 2
+机械故障:	2
+
+cluster labelName: 13184; count: 2
+机械故障:	2
+
+cluster labelName: 13191; count: 2
+机械故障:	2
+
+cluster labelName: 13234; count: 2
+机械故障:	2
+
+cluster labelName: 13247; count: 2
+机械故障:	2
+
+cluster labelName: 13280; count: 3
+机械故障:	3
+
+cluster labelName: 13324; count: 2
+机械故障:	2
+
+cluster labelName: 13334; count: 3
+机械故障:	3
+
+cluster labelName: 13349; count: 4
+机械故障:	4
+
+cluster labelName: 13411; count: 2
+机械故障:	2
+
+cluster labelName: 13437; count: 2
+机械故障:	2
+
+cluster labelName: 13646; count: 2
+机械故障:	2
+
+cluster labelName: 13662; count: 3
+发热故障:	1
+机械故障:	2
+
+cluster labelName: 13690; count: 2
+机械故障:	2
+
+cluster labelName: 13708; count: 2
+机械故障:	2
+
+cluster labelName: 13718; count: 2
+机械故障:	2
+
+cluster labelName: 14073; count: 2
+机械故障:	2
+
+cluster labelName: 14089; count: 3
+机械故障:	3
+
+cluster labelName: 14282; count: 2
+机械故障:	2
+

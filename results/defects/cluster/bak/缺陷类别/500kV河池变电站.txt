@@ -1,0 +1,51 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15357; count: 2
+漏气:	1
+电容爆裂:	1
+
+cluster labelName: 15521; count: 2
+发热:	1
+过热:	1
+
+cluster labelName: 15556; count: 2
+打压超时:	1
+电压不合格:	1
+
+cluster labelName: 14881; count: 2
+回路电阻超标:	1
+气体超标:	1
+
+cluster labelName: 14028; count: 2
+回路电阻超标:	2
+
+cluster labelName: 14278; count: 4
+瓷瓶损坏:	4
+
+cluster labelName: 12219; count: 2
+打压频繁:	2
+
+cluster labelName: 12272; count: 2
+进水:	1
+五防闭锁异常:	1
+
+cluster labelName: 12423; count: 4
+漏油:	2
+无法打压:	2
+
+cluster labelName: 12680; count: 2
+控制操作失败:	2
+
+cluster labelName: 13300; count: 2
+计数器故障:	2
+
+cluster labelName: 13765; count: 2
+漏油:	2
+
+cluster labelName: 14183; count: 2
+电容设计缺陷:	1
+电容导体缺陷:	1
+
+cluster labelName: 14222; count: 4
+电容设计缺陷:	4
+

@@ -1,0 +1,51 @@
+相关联功能位置	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15422; count: 2
+#1主变220kV侧2041间隔:	1
+220kV梧苍Ⅰ线2011间隔:	1
+
+cluster labelName: 15494; count: 2
+500kV第二串联络5022间隔:	1
+35kV#2M第二组电抗器322间隔:	1
+
+cluster labelName: 15505; count: 2
+35kV#1M第一组电容器311间隔:	1
+35kV#1M第三组电容器313间隔:	1
+
+cluster labelName: 11407; count: 2
+500kV梧罗Ⅱ线5043间隔:	1
+500kV第四串联络5042间隔:	1
+
+cluster labelName: 13087; count: 4
+500kV来梧Ⅱ线5021间隔:	1
+#2主变500kV侧5023间隔:	1
+220kV梧允Ⅰ线2023间隔:	2
+
+cluster labelName: 12071; count: 2
+35kV#2M第一组电抗器321间隔:	1
+35kV#2M第二组电抗器322间隔:	1
+
+cluster labelName: 11888; count: 2
+500kV第三串联络5032间隔:	2
+
+cluster labelName: 11979; count: 2
+500kV来梧Ⅰ线5031间隔:	2
+
+cluster labelName: 12080; count: 2
+500kV来梧Ⅱ线5021间隔:	1
+35kV#2M第三组电抗器323间隔:	1
+
+cluster labelName: 13157; count: 7
+35kV#2M第二组电容器326间隔:	1
+500kV第三串联络5032间隔:	1
+500kV来梧Ⅱ线5021间隔:	1
+35kV#2M第一组电抗器321间隔:	1
+35kV#2M第一组电容器325间隔:	1
+35kV#2M第三组电抗器323间隔:	1
+35kV#2M第二组电抗器322间隔:	1
+
+cluster labelName: 13946; count: 3
+35kV#2M第一组电容器325间隔:	1
+35kV#2M第三组电抗器323间隔:	1
+35kV#2M第二组电抗器322间隔:	1
+

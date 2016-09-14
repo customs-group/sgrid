@@ -1,0 +1,28 @@
+cluster labelName: 9.573770523071289; count: 122
+
+cluster labelName: 11.351351737976074; count: 111
+
+cluster labelName: 17.33333396911621; count: 105
+
+cluster labelName: 20.657142639160156; count: 70
+
+cluster labelName: 22.507936477661133; count: 63
+
+cluster labelName: 14.719298362731934; count: 57
+
+cluster labelName: 0.09433962404727936; count: 53
+
+cluster labelName: 16.0; count: 46
+
+cluster labelName: 7.705882549285889; count: 34
+
+cluster labelName: 19.0; count: 33
+
+cluster labelName: 13.0; count: 23
+
+cluster labelName: 3.6470587253570557; count: 17
+
+cluster labelName: 2.0; count: 5
+
+cluster labelName: 5.599999904632568; count: 5
+

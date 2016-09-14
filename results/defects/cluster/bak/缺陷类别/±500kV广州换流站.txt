@@ -1,0 +1,13 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 14735; count: 3
+发热:	3
+
+cluster labelName: 14757; count: 2
+发热:	1
+漏油:	1
+
+cluster labelName: 14795; count: 2
+温差过大:	1
+其他:	1
+

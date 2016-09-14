@@ -1,0 +1,22 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15909; count: 3
+渗漏:	1
+电气试验数据超标:	2
+
+cluster labelName: 15561; count: 2
+渗漏:	1
+拒动:	1
+
+cluster labelName: 15700; count: 3
+电气试验数据超标:	3
+
+cluster labelName: 14892; count: 2
+回路电阻超标:	2
+
+cluster labelName: 14908; count: 2
+回路电阻超标:	2
+
+cluster labelName: 14502; count: 3
+回路电阻超标:	3
+

@@ -1,0 +1,29 @@
+相关联功能位置	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15885; count: 3
+C323开关:	1
+C313开关:	1
+C2012开关:	1
+
+cluster labelName: 15869; count: 2
+C313开关:	1
+C311开关:	1
+
+cluster labelName: 15947; count: 2
+C323开关:	1
+C2012开关:	1
+
+cluster labelName: 15711; count: 2
+C313开关:	1
+C311开关:	1
+
+cluster labelName: 14721; count: 4
+C2061开关:	4
+
+cluster labelName: 14834; count: 4
+C2059开关:	4
+
+cluster labelName: 14908; count: 2
+C313开关:	1
+C311开关:	1
+

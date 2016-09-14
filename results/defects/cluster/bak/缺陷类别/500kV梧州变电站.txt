@@ -1,0 +1,44 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15422; count: 2
+漏油:	1
+试合不能成功:	1
+
+cluster labelName: 15494; count: 2
+卡涩:	1
+回路电阻超标:	1
+
+cluster labelName: 15505; count: 2
+发热:	1
+漏气:	1
+
+cluster labelName: 11407; count: 2
+电压介损超标:	1
+电容介损超标:	1
+
+cluster labelName: 13087; count: 4
+其他:	2
+计数器故障:	2
+
+cluster labelName: 12071; count: 2
+回路电阻超标:	2
+
+cluster labelName: 11888; count: 2
+漏油:	2
+
+cluster labelName: 11979; count: 2
+闭锁异常:	1
+电压低:	1
+
+cluster labelName: 12080; count: 2
+回路电阻超标:	1
+计数器故障:	1
+
+cluster labelName: 13157; count: 7
+漏油:	1
+回路电阻超标:	5
+压力低:	1
+
+cluster labelName: 13946; count: 3
+回路电阻超标:	3
+

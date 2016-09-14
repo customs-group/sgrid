@@ -1,0 +1,22 @@
+相关联功能位置	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15985; count: 2
+500k沙柳乙线5043断路器:	1
+500kV柳贺甲线5031断路器:	1
+
+cluster labelName: 16009; count: 3
+500kV柳桂甲线5061断路器:	1
+500kV第六串联络5062断路器:	2
+
+cluster labelName: 15620; count: 2
+35kV#2电抗器组314断路器:	1
+35kV#3电抗器组316间隔:	1
+
+cluster labelName: 15646; count: 2
+500kV柳桂乙线5071断路器:	1
+220kV东杨线2063断路器:	1
+
+cluster labelName: 14784; count: 2
+35kV#2电抗器组314断路器:	1
+35kV#3电抗器组316间隔:	1
+

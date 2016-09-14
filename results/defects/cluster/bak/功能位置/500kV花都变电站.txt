@@ -1,0 +1,27 @@
+相关联功能位置	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15585; count: 2
+500kV#3自藕变中压侧2203间隔:	1
+500kV#2自藕变中压侧2202间隔:	1
+
+cluster labelName: 15203; count: 2
+35kV#3M第二组电抗器334间隔:	1
+35kV#3M第一组电抗器332间隔:	1
+
+cluster labelName: 14830; count: 2
+35kV#3M第三组电容器335间隔:	1
+35kV#2M第二组电抗器324间隔:	1
+
+cluster labelName: 13329; count: 2
+500kV第七串联络5072间隔:	1
+500kV砚花甲线5061间隔:	1
+
+cluster labelName: 13895; count: 3
+500kV第七串联络5072间隔:	1
+500kV砚花甲线5061间隔:	1
+500kV第一串联络5012间隔:	1
+
+cluster labelName: 13938; count: 2
+500kV砚花乙线5071间隔:	1
+500kV花博乙线5013间隔:	1
+

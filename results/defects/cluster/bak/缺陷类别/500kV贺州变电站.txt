@@ -1,0 +1,20 @@
+相关联缺陷类别	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15834; count: 2
+回路电阻不合格:	2
+
+cluster labelName: 15546; count: 2
+合位异常:	1
+压力低:	1
+
+cluster labelName: 14741; count: 2
+回路电阻超标:	1
+线圈损坏:	1
+
+cluster labelName: 13804; count: 2
+发热:	1
+气压下降:	1
+
+cluster labelName: 13971; count: 2
+分闸电压小:	2
+

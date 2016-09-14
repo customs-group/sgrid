@@ -1,0 +1,20 @@
+相关联功能位置	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15909; count: 3
+断路器:	3
+
+cluster labelName: 15561; count: 2
+机构:	2
+
+cluster labelName: 15700; count: 3
+断路器:	3
+
+cluster labelName: 14892; count: 2
+断路器:	2
+
+cluster labelName: 14908; count: 2
+断路器:	2
+
+cluster labelName: 14502; count: 3
+断路器:	3
+

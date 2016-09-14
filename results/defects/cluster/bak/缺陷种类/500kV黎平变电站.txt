@@ -1,0 +1,12 @@
+相关联缺陷种类	:	时间阈值内发生次数
+-------------------------------
+cluster labelName: 15949; count: 2
+机械故障:	2
+
+cluster labelName: 14492; count: 3
+发热故障:	2
+机械故障:	1
+
+cluster labelName: 14606; count: 5
+发热故障:	5
+

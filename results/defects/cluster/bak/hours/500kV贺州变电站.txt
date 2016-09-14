@@ -1,0 +1,8 @@
+cluster labelName: 10.5; count: 14
+
+cluster labelName: 18.6; count: 5
+
+cluster labelName: 16.25; count: 4
+
+cluster labelName: 13.5; count: 2
+
