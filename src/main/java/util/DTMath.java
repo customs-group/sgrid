@@ -1,12 +1,12 @@
-package edwardlol;
+package util;
 
 /**
  *
  * Created by edwardlol on 16/7/5.
  */
-public class MyMath {
+public class DTMath {
     // Suppress default constructor for noninstantiability
-    private MyMath() {
+    private DTMath() {
         throw new AssertionError();
     }
 
@@ -21,7 +21,7 @@ public class MyMath {
         for (double e : input) {
             sum += e * e;
         }
-        sum = Math.sqrt(sum);
+        sum = java.lang.Math.sqrt(sum);
         double[] result = new double[input.length];
         for (int i = 0; i < result.length; i++) {
             result[i] = input[i] / sum;
@@ -54,7 +54,7 @@ public class MyMath {
      * @return the euclidean norm (aka. length) of the input vector
      */
     public static double euclideanNorm(double[] vector) {
-        return Math.sqrt(dot(vector, vector));
+        return java.lang.Math.sqrt(dot(vector, vector));
     }
 
     /**
@@ -71,9 +71,9 @@ public class MyMath {
         }
         double sum = 0.0d;
         for (int i = 0; i < vector1.length; i++) {
-            sum += Math.pow(vector1[i] - vector2[i], 2);
+            sum += java.lang.Math.pow(vector1[i] - vector2[i], 2);
         }
-        return Math.sqrt(sum);
+        return java.lang.Math.sqrt(sum);
     }
 
     /**

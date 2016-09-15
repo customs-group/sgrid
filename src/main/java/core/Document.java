@@ -1,6 +1,6 @@
 package core;
 
-import edwardlol.Utility;
+import util.Util;
 
 import java.io.Serializable;
 import java.util.*;
@@ -38,7 +38,7 @@ public class Document implements Serializable {
      */
     public Map<String, Integer> countTerms(List<String> terms) {
         this.termsCount = new HashMap<>();
-        this.termsCount = Utility.countList(terms);
+        this.termsCount = Util.countList(terms);
         return this.termsCount;
     }
 

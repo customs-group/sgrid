@@ -1,7 +1,7 @@
 package core;
 
 import core.columnGroups.*;
-import edwardlol.*;
+import util.*;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -60,35 +60,35 @@ public class StatisticLib {
             line = bufferedReader.readLine();
             while (line != null) {
                 String[] contents = line.split(",");
-                BigInteger id = new BigInteger(Utility.readStringWithNull(contents[2]));
-                String company = Utility.readStringWithNull(contents[3]);
-                String department = Utility.readStringWithNull(contents[4]);
-                String location = Utility.readStringWithNull(contents[5]);
-                String defectLevel = Utility.readStringWithNull(contents[6]);
-                String type = Utility.readStringWithNull(contents[7]);
-                String classification = Utility.readStringWithNull(contents[8]);
-                String equipName = Utility.readStringWithNull(contents[9]);
-                String equipType = Utility.readStringWithNull(contents[10]);
-                String functionPosition = Utility.readStringWithNull(contents[11]);
-                String partsName = Utility.readStringWithNull(contents[12]);
-                String voltageString = Utility.readStringWithNull(contents[13]);
-                Calendar findDate = Utility.stringToCalendar(contents[14]);
-                String defectApperance = Utility.readStringWithNull(contents[15]);
-                String defectDescription = Utility.readStringWithNull(contents[16]);
-                String defectType = Utility.readStringWithNull(contents[17]);
+                BigInteger id = new BigInteger(Util.readStringWithNull(contents[2]));
+                String company = Util.readStringWithNull(contents[3]);
+                String department = Util.readStringWithNull(contents[4]);
+                String location = Util.readStringWithNull(contents[5]);
+                String defectLevel = Util.readStringWithNull(contents[6]);
+                String type = Util.readStringWithNull(contents[7]);
+                String classification = Util.readStringWithNull(contents[8]);
+                String equipName = Util.readStringWithNull(contents[9]);
+                String equipType = Util.readStringWithNull(contents[10]);
+                String functionPosition = Util.readStringWithNull(contents[11]);
+                String partsName = Util.readStringWithNull(contents[12]);
+                String voltageString = Util.readStringWithNull(contents[13]);
+                Calendar findDate = Util.stringToCalendar(contents[14]);
+                String defectApperance = Util.readStringWithNull(contents[15]);
+                String defectDescription = Util.readStringWithNull(contents[16]);
+                String defectType = Util.readStringWithNull(contents[17]);
                 // TODO: 16/6/12 defectClass: the added column
-                String defectClass = Utility.readStringWithNull(contents[18]);
-                Calendar reportDate = Utility.stringToCalendar(contents[19]);
-                Calendar solveDate = Utility.stringToCalendar(contents[20]);
-                String recommendation = Utility.readStringWithNull(contents[21]);
-                String manufactor = Utility.readStringWithNull(contents[22]);
-                String model = Utility.readStringWithNull(contents[23]);
-                String defectReason = Utility.readStringWithNull(contents[24]);
-                String defectPart = Utility.readStringWithNull(contents[25]);
+                String defectClass = Util.readStringWithNull(contents[18]);
+                Calendar reportDate = Util.stringToCalendar(contents[19]);
+                Calendar solveDate = Util.stringToCalendar(contents[20]);
+                String recommendation = Util.readStringWithNull(contents[21]);
+                String manufactor = Util.readStringWithNull(contents[22]);
+                String model = Util.readStringWithNull(contents[23]);
+                String defectReason = Util.readStringWithNull(contents[24]);
+                String defectPart = Util.readStringWithNull(contents[25]);
                 // 26 解决方案
-                String defectStatus = Utility.readStringWithNull(contents[27]);
+                String defectStatus = Util.readStringWithNull(contents[27]);
                 // 28 设备生产日期
-                Calendar operationDate = Utility.stringToCalendar(contents[29]);
+                Calendar operationDate = Util.stringToCalendar(contents[29]);
 
                 int voltage;
                 Pattern vPattern = Pattern.compile("(\\d+)[vV]");
@@ -152,7 +152,7 @@ public class StatisticLib {
         this.locationMap.forEach((location, defectList) -> {
             // sort every entry of location map according to the report date
             Collections.sort(defectList, (o1, o2) -> {
-                int x = Utility.getIntervalDays(o1.getReportDate(), o2.getReportDate());
+                int x = Util.getIntervalDays(o1.getReportDate(), o2.getReportDate());
                 return (x < 0) ? -1 : ((x == 0) ? 0 : 1);
             });
 
@@ -163,10 +163,10 @@ public class StatisticLib {
                 for (int j = i + 1; j < defectList.size(); j++) {
                     DefectComplete defectj = defectList.get(j);
                     String fieldj = defectj.getField(fieldName);
-                    if (Math.abs(Utility.getIntervalDays(defecti.getReportDate(), defectj.getReportDate())) <= interval
+                    if (Math.abs(Util.getIntervalDays(defecti.getReportDate(), defectj.getReportDate())) <= interval
                             && !fieldi.equals("无")
                             && !fieldj.equals("无")) {
-                        Utility.updateCountMap(correlationMap, fieldi + " -> " + fieldj);
+                        Util.updateCountMap(correlationMap, fieldi + " -> " + fieldj);
                     }
                 }
             }
@@ -277,7 +277,7 @@ public class StatisticLib {
                 Map<Integer, Integer> cntMap;
                 if (manufactorMap.containsKey(defect.getManufactor())) { // 生产厂家存在map中
                     cntMap = manufactorMap.get(defect.getManufactor());
-                    Utility.updateCountMap(cntMap, operationMonths);
+                    Util.updateCountMap(cntMap, operationMonths);
                 } else {
                     cntMap = new HashMap<>();
                     cntMap.put(operationMonths, 1);
@@ -482,7 +482,7 @@ public class StatisticLib {
             Map<String, Integer> map3 = map2.containsKey(defect.getDefectType()) ?
                     map2.get(defect.getDefectType()) : new HashMap<>();
 
-            Utility.updateCountMap(map3, defect.getPartsName());
+            Util.updateCountMap(map3, defect.getPartsName());
 
             map2.put(defect.getDefectType(), map3);
             map1.put(defect.getDefectClass(), map2);
@@ -546,7 +546,7 @@ public class StatisticLib {
     public void demo2_2(String path) {
         // 1
         Map<String, Integer> manuMap = new HashMap<>();
-        this.defects.forEach(defect -> Utility.updateCountMap(manuMap, defect.getManufactor()));
+        this.defects.forEach(defect -> Util.updateCountMap(manuMap, defect.getManufactor()));
         try {
             FileWriter fw = new FileWriter("./results/demo/2_2/1.txt");
             BufferedWriter bw = new BufferedWriter(fw);

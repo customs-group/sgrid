@@ -1,4 +1,4 @@
-package edwardlol;
+package util;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.SegToken;
@@ -17,12 +17,12 @@ import java.util.stream.Stream;
  *
  * Created by edwardlol on 16/6/20.
  */
-public class Utility {
+public class Util {
 
     //~ Constructors -----------------------------------------------------------
 
     // Suppress default constructor for noninstantiability
-    private Utility() {
+    private Util() {
         throw new AssertionError();
     }
 
@@ -65,7 +65,8 @@ public class Utility {
         return result;
     }
 
-    // nlp methods
+    //~ NLP methods ------------------------------------------------------------
+
     /**
      * seperate words in sentence
      * @param sentence the sentence you want to seperate
@@ -90,7 +91,8 @@ public class Utility {
     }
 
 
-    // io methods
+    //~ IO methods -------------------------------------------------------------
+
     /**
      * check the format of the input file
      * @param file file name
@@ -134,7 +136,8 @@ public class Utility {
         return content.equals("") ? "无" : content;
     }
 
-    // date methods
+    //~ Date methods -----------------------------------------------------------
+
     /**
      * get the interval days of two Date instances
      * @param date1 the later Date
@@ -213,3 +216,5 @@ public class Utility {
         }
     }
 }
+
+// End Util.java

@@ -1,7 +1,6 @@
 package core.cluster;
 
 import core.DefectComplete;
-import edwardlol.*;
 
 import java.util.*;
 
@@ -10,6 +9,8 @@ import java.util.*;
  * Created by edwardlol on 16/6/10.
  */
 class Cluster extends AbstractCluster<DefectComplete> {
+
+    //~ Methods ----------------------------------------------------------------
 
     /**
      * get the lable of this cluster
@@ -32,7 +33,7 @@ class Cluster extends AbstractCluster<DefectComplete> {
     private double getDaysAsLabel() {
         double result = 0.0d;
         int count = 0;
-        for (DefectComplete defect : this.elements) {
+        for (DefectComplete defect : this.samples) {
             if (defect.getOperationDays() != 0) {
                 result += defect.getOperationDays();
                 count++;
@@ -48,7 +49,7 @@ class Cluster extends AbstractCluster<DefectComplete> {
     private double getHoursAsLabel() {
         double result = 0.0d;
         int count = 0;
-        for (DefectComplete defect : elements) {
+        for (DefectComplete defect : samples) {
             if (defect.getReportDate() != null) {
                 Calendar calendar = defect.getReportDate();
                 result += calendar.get(Calendar.HOUR_OF_DAY);
@@ -58,3 +59,5 @@ class Cluster extends AbstractCluster<DefectComplete> {
         return result / count;
     }
 }
+
+// End Cluster.java

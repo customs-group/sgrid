@@ -8,8 +8,8 @@ import core.cluster.ClusterLib;
  */
 public class ClusterDemo {
     public static void main(String[] args) {
-        ClusterLib clusterLib = new ClusterLib();
-        clusterLib.initFromFile("datasets/defects/SwitchDefects.cleared.csv");
+        ClusterLib clusterLib = ClusterLib.getInstance();
+        clusterLib.initFromCSVFile("datasets/defects/SwitchDefects.cleared.csv");
         clusterLib.setLabelName("hours");
         clusterLib.hierarchicalCluster(1.0);
         clusterLib.recordClusterResult("results/defects/cluster/hours/all.txt");

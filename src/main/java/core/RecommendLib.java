@@ -1,6 +1,6 @@
 package core;
 
-import edwardlol.*;
+import util.*;
 import core.columnGroups.*;
 
 import java.io.*;
@@ -56,9 +56,9 @@ public class RecommendLib {
             line = bufferedReader.readLine();
             while (line != null) {
                 String[] contents = line.split(",");
-                String defectApperance = Utility.readStringWithNull(contents[15]);
-                String defectDescription = Utility.readStringWithNull(contents[16]);
-                String recommendation = Utility.readStringWithNull(contents[20]);
+                String defectApperance = Util.readStringWithNull(contents[15]);
+                String defectDescription = Util.readStringWithNull(contents[16]);
+                String recommendation = Util.readStringWithNull(contents[20]);
                 Document _defectDescription = new Document(defectDescription);
 
                 Details details = new Details.DetailsBuilder(defectApperance, _defectDescription)
@@ -85,7 +85,7 @@ public class RecommendLib {
         long startTime = System.currentTimeMillis();
         // seperate the description and count the terms of each defect
         this.defects.forEach(defect -> {
-            List<String> seperatedDescription = Utility.seperate(defect.getDescription().toString());
+            List<String> seperatedDescription = Util.seperate(defect.getDescription().toString());
             defect.getDescription().countTerms(seperatedDescription);
         });
         // calculate the inverted index of the corpus
@@ -124,7 +124,7 @@ public class RecommendLib {
         long startTime = System.currentTimeMillis();
 
         Document _defectDescription = new Document(description);
-        _defectDescription.countTerms(Utility.seperate(_defectDescription.toString()));
+        _defectDescription.countTerms(Util.seperate(_defectDescription.toString()));
         _defectDescription.calculateTF_IDF(this.defects.size(), this.invertedIndex);
         _defectDescription.calculateKeyWords(this.keyWordBoundary);
         _defectDescription.calculateFeatureVector(this.featureTerms);

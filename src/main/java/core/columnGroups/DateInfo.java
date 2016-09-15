@@ -1,6 +1,6 @@
 package core.columnGroups;
 
-import edwardlol.*;
+import util.*;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -38,13 +38,13 @@ public class DateInfo implements Serializable {
         this.producedDate = producedDate;
 
         if (this.reportDate != null && this.operationDate != null) {
-            this.operationDays = Utility.getIntervalDays(this.reportDate, this.operationDate);
+            this.operationDays = Util.getIntervalDays(this.reportDate, this.operationDate);
             this.operationMonths = this.operationDays / 30;
             this.operationYears = this.operationDays / 365;
         }
 
         if (this.findDate != null && this.solveDate != null) {
-            this.solveHours = Utility.getIntervalHours(this.solveDate, this.findDate);
+            this.solveHours = Util.getIntervalHours(this.solveDate, this.findDate);
         }
     }
 

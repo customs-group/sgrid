@@ -3,12 +3,15 @@ package core.cluster;
 import core.DefectComplete;
 import core.Document;
 import core.columnGroups.*;
-import edwardlol.*;
+import util.*;
+import util.DTMath;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,11 +19,36 @@ import java.util.regex.Pattern;
  *
  * Created by edwardlol on 16/7/9.
  */
-public class ClusterLib extends AbstractListLib<Cluster> implements Serializable {
+public class ClusterLib implements Serializable {
+
+    //~ Static fields/initializers ---------------------------------------------
+
+    private static ClusterLib instance = null;
+
+    //~ Instance fields --------------------------------------------------------
+
+    private List<Cluster> clusters = new ArrayList<>();
 
     private String labelName;
 
-    public void initFromFile(String file) {
+    //~ Constructors -----------------------------------------------------------
+
+    private ClusterLib() {}
+
+    //~ Methods ----------------------------------------------------------------
+
+    /**
+     * get the only instance of this class
+     * @return the only instance of this class
+     */
+    public static ClusterLib getInstance() {
+        if (instance == null) {
+            instance = new ClusterLib();
+        }
+        return instance;
+    }
+
+    public void initFromCSVFile(String file) {
         long startTime = System.currentTimeMillis();
         try {
             FileReader fileReader = new FileReader(file);
@@ -29,35 +57,35 @@ public class ClusterLib extends AbstractListLib<Cluster> implements Serializable
             line = bufferedReader.readLine();
             while (line != null) {
                 String[] contents = line.split(",");
-                BigInteger id = new BigInteger(Utility.readStringWithNull(contents[2]));
-                String company = Utility.readStringWithNull(contents[3]);
-                String department = Utility.readStringWithNull(contents[4]);
-                String location = Utility.readStringWithNull(contents[5]);
-                String defectLevel = Utility.readStringWithNull(contents[6]);
-                String type = Utility.readStringWithNull(contents[7]);
-                String classification = Utility.readStringWithNull(contents[8]);
-                String equipName = Utility.readStringWithNull(contents[9]);
-                String equipType = Utility.readStringWithNull(contents[10]);
-                String functionPosition = Utility.readStringWithNull(contents[11]);
-                String partsName = Utility.readStringWithNull(contents[12]);
-                String voltageString = Utility.readStringWithNull(contents[13]);
-                Calendar findDate = Utility.stringToCalendar(contents[14]);
-                String defectApperance = Utility.readStringWithNull(contents[15]);
-                String defectDescription = Utility.readStringWithNull(contents[16]);
-                String defectType = Utility.readStringWithNull(contents[17]);
+                BigInteger id = new BigInteger(Util.readStringWithNull(contents[2]));
+                String company = Util.readStringWithNull(contents[3]);
+                String department = Util.readStringWithNull(contents[4]);
+                String location = Util.readStringWithNull(contents[5]);
+                String defectLevel = Util.readStringWithNull(contents[6]);
+                String type = Util.readStringWithNull(contents[7]);
+                String classification = Util.readStringWithNull(contents[8]);
+                String equipName = Util.readStringWithNull(contents[9]);
+                String equipType = Util.readStringWithNull(contents[10]);
+                String functionPosition = Util.readStringWithNull(contents[11]);
+                String partsName = Util.readStringWithNull(contents[12]);
+                String voltageString = Util.readStringWithNull(contents[13]);
+                Calendar findDate = Util.stringToCalendar(contents[14]);
+                String defectApperance = Util.readStringWithNull(contents[15]);
+                String defectDescription = Util.readStringWithNull(contents[16]);
+                String defectType = Util.readStringWithNull(contents[17]);
                 // TODO: 16/6/12 defectClass: the added column
-                String defectClass = Utility.readStringWithNull(contents[18]);
-                Calendar reportDate = Utility.stringToCalendar(contents[19]);
-                Calendar solveDate = Utility.stringToCalendar(contents[20]);
-                String recommendation = Utility.readStringWithNull(contents[21]);
-                String manufactor = Utility.readStringWithNull(contents[22]);
-                String model = Utility.readStringWithNull(contents[23]);
-                String defectReason = Utility.readStringWithNull(contents[24]);
-                String defectPart = Utility.readStringWithNull(contents[25]);
+                String defectClass = Util.readStringWithNull(contents[18]);
+                Calendar reportDate = Util.stringToCalendar(contents[19]);
+                Calendar solveDate = Util.stringToCalendar(contents[20]);
+                String recommendation = Util.readStringWithNull(contents[21]);
+                String manufactor = Util.readStringWithNull(contents[22]);
+                String model = Util.readStringWithNull(contents[23]);
+                String defectReason = Util.readStringWithNull(contents[24]);
+                String defectPart = Util.readStringWithNull(contents[25]);
                 // 26 解决方案
-                String defectStatus = Utility.readStringWithNull(contents[27]);
+                String defectStatus = Util.readStringWithNull(contents[27]);
                 // 28 设备生产日期
-                Calendar operationDate = Utility.stringToCalendar(contents[29]);
+                Calendar operationDate = Util.stringToCalendar(contents[29]);
 
                 int voltage;
                 Pattern vPattern = Pattern.compile("(\\d+)[vV]");
@@ -90,7 +118,7 @@ public class ClusterLib extends AbstractListLib<Cluster> implements Serializable
 
                 Cluster cluster = new Cluster();
                 cluster.add(defect);
-                this.add(cluster);
+                this.clusters.add(cluster);
 
                 line = bufferedReader.readLine();
             }
@@ -109,10 +137,10 @@ public class ClusterLib extends AbstractListLib<Cluster> implements Serializable
      */
     public void hierarchicalCluster(double threshold) {
         // initFromCSVFile matrix
-        float[][] distanceMatrix = new float[this.size()][this.size()];
+        float[][] distanceMatrix = new float[this.clusters.size()][this.clusters.size()];
         for (int i = 0; i < distanceMatrix.length; i++) {
             for (int j = i + 1; j < distanceMatrix.length; j++) {
-                distanceMatrix[i][j] = (float) Math.abs(this.get(i).getLabel(this.labelName) - this.get(j).getLabel(this.labelName));
+                distanceMatrix[i][j] = (float) java.lang.Math.abs(this.clusters.get(i).getLabel(this.labelName) - this.clusters.get(j).getLabel(this.labelName));
                 distanceMatrix[j][i] = distanceMatrix[i][j];
             }
         }
@@ -133,12 +161,12 @@ public class ClusterLib extends AbstractListLib<Cluster> implements Serializable
                 break;
             }
             // update matrix
-            int cluster_i_num = this.get(index_i).size();
-            int cluster_j_num = this.get(index_j).size();
-            distanceMatrix = MyMath.updateDistanceMatrix(distanceMatrix, index_i, index_j, cluster_i_num, cluster_j_num);
+            int cluster_i_num = this.clusters.get(index_i).sampleNum();
+            int cluster_j_num = this.clusters.get(index_j).sampleNum();
+            distanceMatrix = DTMath.updateDistanceMatrix(distanceMatrix, index_i, index_j, cluster_i_num, cluster_j_num);
             // update clusterList
-            this.get(index_i).union(this.get(index_j));
-            this.remove(index_j);
+            this.clusters.get(index_i).union(this.clusters.get(index_j));
+            this.clusters.remove(index_j);
         }
     }
 
@@ -151,15 +179,15 @@ public class ClusterLib extends AbstractListLib<Cluster> implements Serializable
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            Collections.sort(this.elements, (cluster1, cluster2) ->
-                    cluster1.size() == cluster2.size() ? 0
-                            : cluster1.size() > cluster2.size() ? -1 : 1
+            Collections.sort(this.clusters, (cluster1, cluster2) ->
+                    cluster1.sampleNum() == cluster2.sampleNum() ? 0
+                            : cluster1.sampleNum() > cluster2.sampleNum() ? -1 : 1
             );
 
-            this.elements.forEach(cluster -> {
-                if (cluster.getElements().size() > 1) {
+            this.clusters.forEach(cluster -> {
+                if (cluster.getSamples().size() > 1) {
                     try {
-                        bufferedWriter.write("cluster label: " + cluster.getLabel("hours") + "; count: " + cluster.getElements().size() + "\n");
+                        bufferedWriter.write("cluster label: " + cluster.getLabel("hours") + "; count: " + cluster.getSamples().size() + "\n");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
