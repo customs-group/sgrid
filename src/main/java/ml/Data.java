@@ -11,6 +11,9 @@ import java.util.Vector;
  * Created by edwardlol on 16/7/7.
  */
 public class Data {
+
+    //~ Instance fields --------------------------------------------------------
+
     private int sampleNum = 0;
     private int featureNum = 0;
     private double scaleUpperBound = 1.0d;
@@ -20,8 +23,10 @@ public class Data {
     private Vector<svm_node[]> originalSet = new Vector<>();
     private Vector<svm_node[]> scaledSet = null;
 
-    public Data() {
-    }
+    //~ Constructors -----------------------------------------------------------
+
+    public Data() { }
+
     public Data(Vector<svm_node[]> samples) {
         this.sampleNum = samples.size();
         this.originalSet = samples;
@@ -32,6 +37,7 @@ public class Data {
             this.featureNum = sample.length;
         }
     }
+
     public Data(Vector<svm_node[]> samples, Vector<Double> labels) {
         this.sampleNum = samples.size();
         this.originalSet = samples;
@@ -43,6 +49,8 @@ public class Data {
             this.featureNum = sample.length;
         }
     }
+
+    //~ Methods ----------------------------------------------------------------
 
     /**
      *
@@ -228,7 +236,8 @@ public class Data {
     }
 
 
-    /** get/set mothods */
+    //~ Getter/setter methods --------------------------------------------------
+
     public Vector<svm_node[]> getDataSet(String type) {
         switch (type.toLowerCase()) {
             case "original":
@@ -256,3 +265,5 @@ public class Data {
         this.scaleLowerBound = scaleLowerBound;
     }
 }
+
+// End Data.java
