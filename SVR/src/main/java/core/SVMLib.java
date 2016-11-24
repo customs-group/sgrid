@@ -26,7 +26,13 @@ public class SVMLib {
 
     private Data trainingData;
 
+    public double CStart;
+    public double CStop;
+    public double CStep;
 
+    public double GStart;
+    public double GStop;
+    public double GStep;
 
     //~ Constructors -----------------------------------------------------------
 
@@ -126,7 +132,7 @@ public class SVMLib {
      * @param fold_n the number of folds
      * @return the 'loss' of the prediction
      */
-    double crossValidation(int fold_n) {
+    private double crossValidation(int fold_n) {
         double totalDiff = 0.0d;
         for (int i = 0; i < fold_n; i++) {
             Vector<svm_node[]> trainSet = new Vector<>();
@@ -172,21 +178,21 @@ public class SVMLib {
      * @return the optimized svm_parameter
      */
     @SuppressWarnings("unused")
-    public svm_parameter updateParam() {
+    public svm_parameter gridSearch(boolean approximate, int fold_n) {
         // suppress training outputs
         svm_print_interface print_func = config.svm_print_null;
         svm.svm_set_print_string_function(print_func);
 
         double bestC = 1.0d;
-        double bestG = 1.0 / this.trainingData.getSampleNum();
+        double bestG = 1.0d / this.trainingData.getSampleNum();
         double smallestDiff = Double.MAX_VALUE;
 
-        for (int power_of_c = -8; power_of_c < 8; power_of_c += 1) {
-            svm_param.C = Math.pow(2, power_of_c);
+        for (double c = this.CStart; c < this.CStop; c += this.CStep) {
+            svm_param.C = approximate ? Math.pow(2, c) : c;
 
             // check if default g gives better result
             svm_param.gamma = 1.0 / this.trainingData.getSampleNum();
-            double diff = crossValidation(10);
+            double diff = crossValidation(fold_n);
             if ((diff < smallestDiff)) {
                 smallestDiff = diff;
                 bestC = svm_param.C;
@@ -194,10 +200,9 @@ public class SVMLib {
                 System.out.println("best c: " + bestC + "; best g: " + bestG + "; diff: " + diff);
             }
 
-            for (int power_of_g = -8; power_of_g < 8; power_of_g += 1) {
-                svm_param.gamma = Math.pow(2, power_of_g);
-                diff = crossValidation(10);
-
+            for (double g = this.GStart; g < this.GStop; g += this.GStep) {
+                svm_param.gamma = approximate ? Math.pow(2, g) : g;
+                diff = crossValidation(fold_n);
                 if ((diff < smallestDiff)) {
                     smallestDiff = diff;
                     bestC = svm_param.C;

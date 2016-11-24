@@ -28,14 +28,31 @@ public class RegressionDemo {
     public void regression1() {
         SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile("./datasets/train.csv");
 
-        // uncomment this line to do cross validation and utilize the svm_param
-        // caution: cost a lot of time
-//        svmLib.svm_param = svmLib.updateParam();
-
         svm_model model = svmLib.train();
         regressionResult(model, "./datasets/test.csv", "./results/result.txt");
     }
 
+    /**
+     * use grid search to optimize the parameter
+     * then train the input set and test on the test set
+     * CAUTION: may cost a LOT of time
+     */
+    @Test
+    public void crossValidationTest() {
+        SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile("./datasets/train.csv");
+
+        // these numbers can be anything you like to do grid search
+        svmLib.CStart = -8;
+        svmLib.CStop = -7;
+        svmLib.CStep = 1;
+        svmLib.GStart = -7;
+        svmLib.GStop = 8;
+        svmLib.CStep = 1;
+
+        SVMLib.svm_param = svmLib.gridSearch(true, 10);
+        svm_model model = svmLib.train();
+        regressionResult(model, "./datasets/test.csv", "./results/result1_with_grid_search.txt");
+    }
     /**
      * regression of weather data and defect count
      */

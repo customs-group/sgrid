@@ -7,6 +7,8 @@ import java.util.Vector;
 /**
  * Created by edwardlol on 16-11-22.
  */
+@SuppressWarnings("unused")
+// not using this class for now
 public class SVM_Parameter {
 
     public double CStart;
