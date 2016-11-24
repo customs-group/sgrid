@@ -1,5 +1,3 @@
-package core;
-
 /**
  *
  * Created by edwardlol on 16/8/13.

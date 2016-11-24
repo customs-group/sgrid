@@ -1,5 +1,3 @@
-package core;
-
 import core.cluster.ClusterLib;
 
 /**
