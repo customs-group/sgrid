@@ -134,11 +134,16 @@ public class SVMLib {
      */
     private double crossValidation(int fold_n) {
         double totalDiff = 0.0d;
+        Vector<svm_node[]> trainSet;
+        Vector<svm_node[]> validSet;
+        Vector<Double> trainLabels;
+        Vector<Double> validLabels;
+
         for (int i = 0; i < fold_n; i++) {
-            Vector<svm_node[]> trainSet = new Vector<>();
-            Vector<svm_node[]> validSet = new Vector<>();
-            Vector<Double> trainLabels = new Vector<>();
-            Vector<Double> validLabels = new Vector<>();
+            trainSet = new Vector<>();
+            validSet = new Vector<>();
+            trainLabels = new Vector<>();
+            validLabels = new Vector<>();
 
             int vsLen = this.trainingData.getSampleNum() / fold_n;
             int vsStart = i * vsLen;

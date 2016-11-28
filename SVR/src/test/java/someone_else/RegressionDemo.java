@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- *
  * Created by edwardlol on 16/8/13.
  */
 public class RegressionDemo {
@@ -32,7 +31,7 @@ public class RegressionDemo {
         SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile(prefixPathData + "svr/train.csv");
 
         svm_model model = svmLib.train();
-        regressionResult(model, prefixPathData+"svr/test.csv", prefixPathResult+"svr/result.txt");
+        regressionResult(model, prefixPathData + "svr/test.csv", prefixPathResult + "svr/result.txt");
     }
 
     /**
@@ -42,7 +41,7 @@ public class RegressionDemo {
      */
     @Test
     public void crossValidationTest() {
-        SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile("./datasets/train.csv");
+        SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile(prefixPathData + "svr/train.csv");
 
         // these numbers can be anything you like to do grid search
         svmLib.CStart = -8;
@@ -54,23 +53,25 @@ public class RegressionDemo {
 
         SVMLib.svm_param = svmLib.gridSearch(true, 10);
         svm_model model = svmLib.train();
-        regressionResult(model, "./datasets/test.csv", "./results/result1_with_grid_search.txt");
+        regressionResult(model, prefixPathData + "test.csv", prefixPathResult + "result1_with_grid_search.txt");
     }
+
     /**
      * regression of weather data and defect count
      */
     @Test
     public void regression2() {
-        SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile(prefixPathData+"demo2.train.csv");
+        SVMLib svmLib = SVMLib.getInstance().setType(LibConfig.Type.REGRESSION).initDataFromFile(prefixPathData + "demo2.train.csv");
 
         svm_model model = svmLib.train();
-        regressionResult(model, prefixPathData+"demo2.test.csv", prefixPathResult+"result2.txt");
+        regressionResult(model, prefixPathData + "demo2.test.csv", prefixPathResult + "result2.txt");
     }
 
     //~ Helper methods ---------------------------------------------------------
 
     /**
      * convert a string array to a double array
+     *
      * @param from source string array
      * @return destination double array
      */
@@ -85,6 +86,7 @@ public class RegressionDemo {
     /**
      * read defect data and make a map
      * consists of date and defect count
+     *
      * @param file defect data
      * @return a map consists of date and defect count
      */
@@ -112,6 +114,7 @@ public class RegressionDemo {
     /**
      * read weather data and make a map
      * consists of date and weather data
+     *
      * @param file weather data
      * @return a map consists of date and weather data
      */
@@ -148,8 +151,8 @@ public class RegressionDemo {
      */
     @Test
     public void combine() {
-        Map<LocalDate, String> defcnt = readPart1(prefixPathData+"svr/defcnt.csv");
-        Map<LocalDate, Integer[]> weather = readPart2(prefixPathData+"svr/weather.csv");
+        Map<LocalDate, String> defcnt = readPart1(prefixPathData + "svr/defcnt.csv");
+        Map<LocalDate, Integer[]> weather = readPart2(prefixPathData + "svr/weather.csv");
 
         Vector<svm_node[]> samples = new Vector<>();
         Vector<Double> labels = new Vector<>();
@@ -170,12 +173,12 @@ public class RegressionDemo {
         assert samples.size() == labels.size();
 
         double trainingRatio = 0.9d;
-        int trainingIndex = (int)Math.round(samples.size() * trainingRatio);
+        int trainingIndex = (int) Math.round(samples.size() * trainingRatio);
 
         Vector<svm_node[]> trainSamples = new Vector<>(samples.subList(0, trainingIndex));
         Vector<Double> trainLabels = new Vector<>(labels.subList(0, trainingIndex));
-        try (FileWriter fw = new FileWriter(prefixPathData+"demo2.train.csv");
-             BufferedWriter bw = new BufferedWriter(fw)){
+        try (FileWriter fw = new FileWriter(prefixPathData + "demo2.train.csv");
+             BufferedWriter bw = new BufferedWriter(fw)) {
             for (int i = 0; i < trainSamples.size(); i++) {
                 bw.append(trainLabels.get(i).toString());
                 bw.append(",");
@@ -195,7 +198,7 @@ public class RegressionDemo {
 
         Vector<svm_node[]> testSamples = new Vector<>(samples.subList(trainingIndex, samples.size()));
         Vector<Double> testLabels = new Vector<>(labels.subList(trainingIndex, samples.size()));
-        try (FileWriter fw = new FileWriter(prefixPathData+"demo2.test.csv");
+        try (FileWriter fw = new FileWriter(prefixPathData + "demo2.test.csv");
              BufferedWriter bw = new BufferedWriter(fw)) {
             for (int i = 0; i < testSamples.size(); i++) {
                 bw.append(testLabels.get(i).toString());
@@ -220,8 +223,8 @@ public class RegressionDemo {
 
     @Test
     public void convert() {
-        convertNeg(prefixPathData+"svr/train.csv", prefixPathData+"demo1.train.csv");
-        convertNeg(prefixPathData+"svr/test.csv", prefixPathData+"demo1.test.csv");
+        convertNeg(prefixPathData + "svr/train.csv", prefixPathData + "demo1.train.csv");
+        convertNeg(prefixPathData + "svr/test.csv", prefixPathData + "demo1.test.csv");
     }
 
     private void convertNeg(String inputFile, String outputFile) {
@@ -253,7 +256,6 @@ public class RegressionDemo {
     }
 
     /**
-     *
      * @param model
      * @param testFile
      * @param resultFile
@@ -267,10 +269,10 @@ public class RegressionDemo {
         try (FileReader fr = new FileReader(testFile);
              BufferedReader br = new BufferedReader(fr);
              FileWriter fw = new FileWriter(resultFile);
-             BufferedWriter bw = new BufferedWriter(fw)){
+             BufferedWriter bw = new BufferedWriter(fw)) {
 
             String line = br.readLine();
-            while(line != null) {
+            while (line != null) {
                 totalCnt++;
                 String[] content = line.split(",");
                 double realLabel = Double.valueOf(content[0]);
@@ -278,7 +280,7 @@ public class RegressionDemo {
 
                 double predictLabel = SVMLib.predict(sample, model);
                 bw.write("predict label: " + predictLabel + "; real label: " + realLabel + "; ");
-                for (int i = 0; i < sample.length; i ++) {
+                for (int i = 0; i < sample.length; i++) {
                     bw.write((i + 1) + ":" + sample[i] + " ");
                 }
                 bw.write("\n");
